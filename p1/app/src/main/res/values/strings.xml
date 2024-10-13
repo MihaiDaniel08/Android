@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Seminar2</string>
+    <string name="enable_notifications">Enable notifications</string>
+    <string name="submit">Submit</string>
+    <string name="sample_image">Sample Image</string>
+    <string name="introdu_ti_datele">Introdu-ti datele:</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="go_to_second_activity">Go to Second Activity</string>
+    <string name="submit_and_back">Submit and back</string>
+    <string name="next_activity">Next activity</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
+    <string name="accept_terms_and_conditions">Accept terms and conditions</string>
+    <string name="option_2">Option 2</string>
+    <string name="option_1">Option 1</string>
+    <string name="image_button">Image Button</string>
+    <string name="start_typing">Start typing...</string>
+</resources>
