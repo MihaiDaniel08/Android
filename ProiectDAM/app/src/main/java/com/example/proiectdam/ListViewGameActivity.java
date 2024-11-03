@@ -2,6 +2,9 @@ package com.example.proiectdam;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -9,7 +12,9 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -36,6 +41,9 @@ public class ListViewGameActivity extends AppCompatActivity {
             return insets;
         });
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
        FloatingActionButton fabAdd = findViewById(R.id.fabAdd);
 
        fabAdd.setOnClickListener(v -> {
@@ -51,11 +59,38 @@ public class ListViewGameActivity extends AppCompatActivity {
                if(game != null){
                    games.add(game);
                }
-               ArrayAdapter<Game> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1,games);
+              GameAdapter adapter = new GameAdapter(getApplicationContext(),R.layout.view_game,games,getLayoutInflater());
                lvGames.setAdapter(adapter);
                Toast.makeText(this, game.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar_menu,menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if (id == R.id.action_add_review) {
+            Intent intent = new Intent(ListViewGameActivity.this, ListViewReviewActivity.class);
+            startActivity(intent);
+            Toast.makeText(this, "Review", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (id == R.id.action_users) {
+            Intent intent = new Intent(ListViewGameActivity.this, ListViewUserActivity.class);
+            startActivity(intent);
+            Toast.makeText(this, "Users", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (id == R.id.action_profile) {
+            Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
 }

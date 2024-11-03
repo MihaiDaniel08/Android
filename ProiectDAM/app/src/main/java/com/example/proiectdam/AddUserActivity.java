@@ -6,48 +6,45 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class AddGameActivity extends AppCompatActivity {
+public class AddUserActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_add_game);
+        setContentView(R.layout.activity_add_user);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        EditText editTextID = findViewById(R.id.editTextId);
-        EditText editTextTitle = findViewById(R.id.editTextTitle);
-        EditText editTextDescription = findViewById(R.id.editTextDescription);
-        EditText editTextGenre = findViewById(R.id.editTextGenre);
+        EditText editTextUserId = findViewById(R.id.editTextUserId);
+        EditText editTextName = findViewById(R.id.editTextName);
+        EditText editTextEmail = findViewById(R.id.editTextEmail);
+        EditText editTextPassword = findViewById(R.id.editTextPassword);
 
-        Button submitButton = findViewById(R.id.btnSubmit);
+        Button submitButton = findViewById(R.id.btnSubmitUsers);
 
         submitButton.setOnClickListener(v -> {
-            String id = editTextID.getText().toString();
-            String title = editTextTitle.getText().toString();
-            String description = editTextDescription.getText().toString();
-            String genre = editTextGenre.getText().toString();
+            String id = editTextUserId.getText().toString();
+            String name = editTextName.getText().toString();
+            String email = editTextEmail.getText().toString();
+            String password = editTextPassword.getText().toString();
 
-            Game game = new Game(id, title, description, genre);
+            User user = new User(id, name, email, password);
 
             Intent intent = getIntent();
-            intent.putExtra("gameFromIntent", game);
+            intent.putExtra("userFromIntent", user);
             setResult(RESULT_OK,intent);
             finish();
 
 
         });
     }
-
-
 }

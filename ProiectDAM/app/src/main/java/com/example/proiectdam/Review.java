@@ -1,19 +1,21 @@
 package com.example.proiectdam;
 
-public class Review {
+import java.io.Serializable;
+
+public class Review implements Serializable {
     private String userId;
     private String gameId;
     private String content;
-    private int rating;
+    private float rating;
 
-    public Review(String userId, String gameId, String content, int rating) {
+    public Review(String userId, String gameId, String content, float rating) {
         this.userId = userId;
         this.gameId = gameId;
         this.content = content;
         this.rating = rating;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 
@@ -43,5 +45,15 @@ public class Review {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "userId='" + userId + '\'' +
+                ", gameId='" + gameId + '\'' +
+                ", content='" + content + '\'' +
+                ", rating=" + rating +
+                '}';
     }
 }
