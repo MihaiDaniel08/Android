@@ -46,7 +46,7 @@ public class ReviewAdapter extends ArrayAdapter<Review> {
         if(review.getRating()>=0 && review.getRating()<=1){
             ratingBar.setProgressTintList(ColorStateList.valueOf(Color.parseColor("#8B0000")));
         } else if (review.getRating()>1 && review.getRating()<=2) {
-            ratingBar.setProgressTintList(ColorStateList.valueOf(Color.parseColor("##008000FF0000")));
+            ratingBar.setProgressTintList(ColorStateList.valueOf(Color.parseColor("#FF6666")));
         } else if (review.getRating()>2 && review.getRating()<=3) {
             ratingBar.setProgressTintList(ColorStateList.valueOf(Color.parseColor("#FFA500")));
         } else if (review.getRating()>3 && review.getRating()<=4) {

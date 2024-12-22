@@ -9,4 +9,14 @@
     <item
         android:id="@+id/action_profile"
         android:title="Profile" />
+    <item
+        android:id="@+id/action_saveToDB"
+        android:title="Salvare in DB"/>
+    <item
+        android:id="@+id/actiob_loadFromDB"
+        android:title="Incarcare din DB"
+        />
+    <item
+        android:id="@+id/action_getFromHttps"
+        android:title="Preia din https"/>
 </menu>

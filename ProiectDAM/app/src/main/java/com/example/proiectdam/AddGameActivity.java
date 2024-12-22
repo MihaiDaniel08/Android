@@ -1,9 +1,11 @@
 package com.example.proiectdam;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
@@ -13,6 +15,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class AddGameActivity extends AppCompatActivity {
+
+    private boolean isEditing = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,19 @@ public class AddGameActivity extends AppCompatActivity {
 
         Button submitButton = findViewById(R.id.btnSubmit);
 
+        Intent editIntent = getIntent();
+        if(editIntent.hasExtra("edit")){
+            isEditing = true;
+            Game game = (Game) editIntent.getSerializableExtra("edit");
+
+            editTextID.setText(game.getId());
+            editTextTitle.setText(game.getTitle());
+            editTextGenre.setText(game.getGenre());
+            editTextDescription.setText(game.getDescription());
+        }
+
+
+
         submitButton.setOnClickListener(v -> {
             String id = editTextID.getText().toString();
             String title = editTextTitle.getText().toString();
@@ -39,14 +56,23 @@ public class AddGameActivity extends AppCompatActivity {
             String genre = editTextGenre.getText().toString();
 
             Game game = new Game(id, title, description, genre);
-
             Intent intent = getIntent();
-            intent.putExtra("gameFromIntent", game);
+
+            if(isEditing){
+                intent.putExtra("edit",game);
+                isEditing=false;
+            }
+            else {
+                intent.putExtra("gameFromIntent", game);
+            }
             setResult(RESULT_OK,intent);
             finish();
-
-
         });
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences("local",MODE_PRIVATE);
+        String token = sharedPreferences.getString("exampleToken","deff val");
+        Toast.makeText(this,token,Toast.LENGTH_SHORT).show();
     }
 
 

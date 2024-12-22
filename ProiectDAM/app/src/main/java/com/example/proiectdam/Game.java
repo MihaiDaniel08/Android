@@ -4,29 +4,26 @@ package com.example.proiectdam;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+import org.jetbrains.annotations.NotNull;
+
+@Entity(tableName = "games")
 public class Game implements Serializable {
+    @NotNull
+    @PrimaryKey
     private String id;
     private String title;
     private String description;
     private String genre;
-    private float averageRating;
-    private List<Review> reviews;
 
     public Game(String id, String title, String description, String genre) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.genre = genre;
-        this.reviews = new ArrayList<>();
-    }
 
-    public float getAverageRating() {
-        return averageRating;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
     }
 
     public String getId() {
@@ -61,22 +58,6 @@ public class Game implements Serializable {
         this.genre = genre;
     }
 
-    public void setAverageRating(float averageRating) {
-        this.averageRating = averageRating;
-    }
-
-    public void addReview(Review review) {
-        reviews.add(review);
-        updateAverageRating();
-    }
-
-    private void updateAverageRating() {
-        int totalRating = 0;
-        for (Review review : reviews) {
-            totalRating += review.getRating();
-        }
-        this.averageRating = reviews.size() > 0 ? (float) totalRating / reviews.size() : 0;
-    }
 
     @Override
     public String toString() {
